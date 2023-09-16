@@ -73,16 +73,18 @@ def main():
         format_text(temp_file_path, formatted_output_path, max_line_length)
         keyword_index = create_keyword_index(formatted_output_path)
 
-        # Hiển thị bảng chỉ dẫn từ khóa
-        st.write("Keyword Index:")
-        for keyword, lines in keyword_index.items():
-            st.write(f"{keyword}: {', '.join(map(str, lines))}")
-
         # Đọc nội dung tệp mới đã định dạng và hiển thị trên Streamlit
         with open(formatted_output_path, "r") as f:
             formatted_text = f.read()
             st.write("Formatted Text:")
             st.text(formatted_text)
+
+        # Hiển thị bảng chỉ dẫn từ khóa
+        st.write("Keyword Index:")
+        for keyword, lines in keyword_index.items():
+            st.write(f"{keyword}: {', '.join(map(str, lines))}")
+
+        
 
         # Xóa tệp tạm thời sau khi hoàn thành
         os.remove(temp_file_path)
